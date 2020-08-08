@@ -1,9 +1,11 @@
 #define _CRT_SECURE_NO_WARNINGS
 
+//libs
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
+//structural prototypes
 struct LIST
 {
 	struct LIST* next;
@@ -28,10 +30,114 @@ struct NodeTree
 	char* code;
 };
 
+//function prototypes
+struct NodeTree* createTree(char symbol, int counter, char* code);
+void addingTree(struct NodeTree* node, char symbol, int counter, char* code);
+void Shannon_Fano(
+	struct NodeTree* node,
+	struct ArrayElement* array,
+	int end,
+	int start,
+	char* vetka,
+	char* fullvetka
+);
+void list_print(struct LIST* node);
+struct LIST* list_addNode(struct LIST* node, char symbol);
+int list_length(struct LIST* node);
+struct LIST* list_clean(struct LIST* node);
+void array_print(struct ArrayElement* array, int length);
+void array_bubbleSort(struct ArrayElement* array, int length);
+
+//main
+int main()
+{
+	FILE* file_pointer = fopen("files/text3.txt", "r");
+
+	if (file_pointer != NULL)
+	{
+		struct LIST* list = NULL; //it is first element on list
+
+		list_print(list);
+
+		while (!feof(file_pointer)) //while it is not end of file
+		{
+			char symbol = getc(file_pointer);
+
+			struct LIST* temp = list;
+			while (temp != NULL)
+			{
+				if (temp->symbol == symbol)
+				{
+					(temp->counter)++;
+					break;
+				}
+
+				temp = temp->next;
+			}
+
+			if (temp == NULL)
+			{
+				list = list_addNode(list, symbol);
+			}
+
+			printf("%c", symbol);
+		} //cycle for first symbol to last symbol
+
+		list_print(list);
+
+		int length = list_length(list);
+		printf("%d", length);
+		struct ArrayElement* array = (struct ArrayElement*)calloc(length, sizeof(struct ArrayElement));
+
+		if (array == NULL)
+		{
+			printf("array not created!!!\n");
+		} //if array not created
+		else
+		{
+			struct LIST* temp;
+			int i;
+			for (temp = list, i = 0; temp != NULL; i++, temp = temp->next)
+			{
+				array[i].counter = temp->counter;
+				array[i].symbol = temp->symbol;
+			}
+
+			list = list_clean(list); //clean list
+
+			array_print(array, length);
+			array_bubbleSort(array, length);
+			array_print(array, length);
+
+			Shannon_Fano(
+				createTree(' ', 0, "0"),
+				array,
+				length,
+				0,
+				"_",
+				"_"
+			);
+
+			array_print(array, length);
+
+			//free(array);
+		} //if array created
+
+		fclose(file_pointer);
+	} //if file opened
+	else
+	{
+		printf("FILE not openned!!!\n");
+	} // if file not opened
+
+	return 0;
+}
+
 struct NodeTree* createTree(char symbol, int counter, char* code)
 {
 	struct NodeTree* new_node = (struct NodeTree*)malloc(sizeof(struct NodeTree));
-	if (new_node != NULL) {
+	if (new_node != NULL)
+	{
 		new_node->left = NULL;
 		new_node->right = NULL;
 		new_node->symbol = symbol;
@@ -95,18 +201,12 @@ void Shannon_Fano(
 	sum_vhodov /= 2;
 	sum2 = array[start].counter;
 
-	for
-		(
-			i = start + 1;
-			abs(sum_vhodov - (sum2 + array[i].counter))
-			<
-			abs(sum_vhodov - sum2)
-			&&
-			i < end;
-			i++
-			)
+	i = start + 1;
+	while(abs(sum_vhodov - (sum2 + array[i].counter)) < abs(sum_vhodov - sum2)
+		&& i < end)
 	{
 		sum2 += array[i].counter;
+		i++;
 	}
 
 	Shannon_Fano(node, array, i - 1, start, "0", code);
@@ -122,11 +222,9 @@ void list_print(struct LIST* node)
 		printf("NULL\n");
 	}
 
-	struct LIST* temp = node;
-	while (temp != NULL)
+	for (struct LIST* temp = node; temp != NULL; temp = temp->next)
 	{
 		printf("%-5d - %c\n", temp->counter, temp->symbol);
-		temp = temp->next;
 	}
 
 	printf("\n\n");
@@ -150,43 +248,48 @@ struct LIST* list_addNode(struct LIST* node, char symbol)
 
 int list_length(struct LIST* node)
 {
-	int i;
-	struct LIST* temp;
-	for (temp = node, i = 0; temp != NULL; temp = temp->next, i++) {
-
+	struct LIST* temp = node;
+	int i = 0;
+	while (temp != NULL)
+	{
+		temp = temp->next;
+		i++;
 	}
 	return i;
 }
 
 struct LIST* list_clean(struct LIST* node)
 {
-	struct LIST* temp = node;
-	while (temp != NULL)
+	while (node != NULL)
 	{
-		struct LIST* node_for_clean = temp;
-		temp = temp->next;
+		struct LIST* node_for_clean = node;
+		node = node->next;
 		free(node_for_clean);
 	}
-	return temp;
+	return node;
 }
 
 void array_print(struct ArrayElement* array, int length)
 {
 	printf("\n\nArray:\n");
-	int i;
-	for (i = 0; i < length; i++)
+	for (int i = 0; i < length; i++)
 	{
-		printf("array[%4d] = { counter: %4d; symbol: %c; code: %s }\n", i, array[i].counter, array[i].symbol, array[i].code);
+		printf(
+			"array[%4d] = { counter: %4d; symbol: %c; code: %s }\n",
+			i,
+			array[i].counter,
+			array[i].symbol,
+			array[i].code
+		);
 	}
 	printf("\n\n");
 }
 
 void array_bubbleSort(struct ArrayElement* array, int length)
 {
-	int i, j;
-	for (i = 0; i < length; i++)
+	for (int i = 0; i < length; i++)
 	{
-		for (j = 0; j < length; j++)
+		for (int j = 0; j < length; j++)
 		{
 			if (array[i].counter > array[j].counter)
 			{
@@ -196,95 +299,4 @@ void array_bubbleSort(struct ArrayElement* array, int length)
 			}
 		}
 	}
-}
-
-int main()
-{
-	FILE* file_pointer = fopen("files/text3.txt", "r");
-
-	if (file_pointer != NULL)
-	{
-		struct LIST* list = NULL;
-
-		list_print(list);
-
-		while (!feof(file_pointer))
-		{
-			char symbol = getc(file_pointer);
-
-			struct LIST* temp = list;
-			while (temp != NULL)
-			{
-				if (temp->symbol == symbol)
-				{
-					(temp->counter)++;
-					break;
-				}
-
-				temp = temp->next;
-			}
-
-			if (temp == NULL)
-			{
-				list = list_addNode(list, symbol);
-			}
-
-			printf("%c", symbol);
-		} //cycle for first symbol to last symbol
-
-
-		list_print(list);
-
-
-
-
-		int length = list_length(list);
-		printf("%d", length);
-		struct ArrayElement* array = (struct ArrayElement*)calloc(length, sizeof(struct ArrayElement));
-
-
-
-		if (array == NULL)
-		{
-			printf("array not created!!!\n");
-		} //if array not created
-		else
-		{
-
-			struct LIST* temp;
-			int i;
-			for (temp = list, i = 0; temp != NULL; i++, temp = temp->next)
-			{
-				array[i].counter = temp->counter;
-				array[i].symbol = temp->symbol;
-			}
-
-			list = list_clean(list); //clean list
-
-			array_print(array, length);
-			array_bubbleSort(array, length);
-			array_print(array, length);
-
-			Shannon_Fano(
-				createTree(' ', 0, "0"),
-				array,
-				length,
-				0,
-				"",
-				""
-			);
-
-			array_print(array, length);
-
-			//free(array);
-		} //if array created
-
-		fclose(file_pointer);
-	} //if file opened
-	else
-	{
-		printf("FILE not openned!!!\n");
-	} // if file not opened
-
-	return 0;
 }
