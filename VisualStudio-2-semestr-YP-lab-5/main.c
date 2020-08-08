@@ -158,6 +158,18 @@ int list_length(struct LIST* node)
 	return i;
 }
 
+struct LIST* list_clean(struct LIST* node)
+{
+	struct LIST* temp = node;
+	while (temp != NULL)
+	{
+		struct LIST* node_for_clean = temp;
+		temp = temp->next;
+		free(node_for_clean);
+	}
+	return temp;
+}
+
 void array_print(struct ArrayElement* array, int length)
 {
 	printf("\n\nArray:\n");
@@ -218,7 +230,7 @@ int main()
 			}
 
 			printf("%c", symbol);
-		}
+		} //cycle for first symbol to last symbol
 
 
 		list_print(list);
@@ -235,7 +247,7 @@ int main()
 		if (array == NULL)
 		{
 			printf("array not created!!!\n");
-		}
+		} //if array not created
 		else
 		{
 
@@ -247,6 +259,7 @@ int main()
 				array[i].symbol = temp->symbol;
 			}
 
+			list = list_clean(list); //clean list
 
 			array_print(array, length);
 			array_bubbleSort(array, length);
@@ -263,15 +276,15 @@ int main()
 
 			array_print(array, length);
 
-			free(array);
-		} 
+			//free(array);
+		} //if array created
 
 		fclose(file_pointer);
-	}
+	} //if file opened
 	else
 	{
 		printf("FILE not openned!!!\n");
-	} 
+	} // if file not opened
 
 	return 0;
 }
