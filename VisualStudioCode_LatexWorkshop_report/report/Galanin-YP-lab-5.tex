@@ -2,49 +2,27 @@
 
 \usepackage{../title_variables}
 \usepackage{../eskd_variables}
+\usepackage{../sourceCode}
 
 % Графа 2 (обозначение документа)
 \ESKDsignature{\code-.... .... ....} 
 
 \begin{document}
     \begin{ESKDtitlePage}
-        \begin{center}
-            Министерство образования Республики Беларусь\\
-            Учреждение образования\\
-            <<Брестский государственный технический университет>>\\
-            Кафедра \titlePageKafedra\\
-        \end{center}
-
-        \vfill
-
-        \begin{center}
-            Лабораторная работа №\titlePageLabNumber\\
-            за \titlePageSemestr~семестр\\
-            по дисциплине: "\titlePageLesson"\\
-            Тема: "\titlePageTopic"\\
-        \end{center}
-
-        \vfill
-
-        \begin{flushright}
-            \begin{minipage}[t]{7cm}
-                Выполнил:\\
-                студент \titlePageKurs~курса\\
-                группы \titlePageGroup\\
-                \titlePageStudentSurname~\titlePageStudentName\\
-
-                Проверил:\\
-                ст. преподаватель\\
-                \titlePagePrepodSurname~\titlePagePrepodName\\
-            \end{minipage}
-        \end{flushright}
-
-        \vfill
-
-        \begin{center}
-            \ESKDtheYear\\
-        \end{center}
+        \input{../report_includes/titlePage.tex}
     \end{ESKDtitlePage}
 
-    ...
+    \begin{center}
+        \textbf{Лабораторная работа №\titlePageLabNumber}\\
+    \end{center}
+
+    \textbf{Тема}: "\titlePageTopic".\\
+
+    \textbf{Цель}: "...".\\
+
+    \textbf{Ход работы}:
+
+    \input{../report_includes/task.tex}
+
+    \input{../report_includes/sourceCode.tex}
 \end{document}

@@ -1,0 +1,36 @@
+\usepackage{listings}
+\usepackage[dvipsnames]{xcolor}
+%\usepackage{listingsutf8}
+
+% Светлый малиново-красный -- малиновый
+\definecolor{my_keyword}{HTML}{d73a49}
+% Перламутрово-ежевичный -- Маренго
+\definecolor{my_comment}{HTML}{6a737d}
+% Джинсовый синий -- Зелёно-синий Крайола
+\definecolor{my_string}{HTML}{005cc5}
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\lstset{   % string literal style
+    inputencoding=utf8,
+	keepspaces=true, %пробелы в коментариях не съедать
+    extendedchars=\true,
+    breaklines=true, % автоматический перенос строк
+    tabsize=2, % таб = 2 пробел
+    captionpos=t, % где находится подпись листинга
+    numbers=left, % где нумерация строк
+    showtabs=2, % показывать табы
+    frame=lines, % рамка
+    showspaces=false, % показывать пробелы
+    title=Листинг: \lstname, % показывать название
+    showstringspaces=true, % показывать пробелы в строках
+    % Стиль ключевых слов: int, char, void, while, else
+    keywordstyle=\color{my_keyword}\ttfamily\bfseries,
+    % Стиль комментариев: // комментарий
+    commentstyle=\color{my_comment}\ttfamily\itshape,
+    % Стиль литералов: строка в printf("строка");
+    stringstyle=\color{my_string},
+    basicstyle=\ttfamily, % Шрифт для отображения кода
+}
