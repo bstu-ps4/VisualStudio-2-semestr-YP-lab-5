@@ -1,54 +1,142 @@
- __000
-t__001
-a__0100
-e__0101
-i__0110
-r__0111
-o__1000
-n__1001
-c__10100
-s__10101
-d__10110
-u__10111
-l__11000
-m__110010
 
-__110011
-p__110100
-h__110101
-g__110110
-f__110111
-y__111000
-b__111001
--__1110100
-,__1110101
-D__1110110
-z__1110111
-9__1111000
-.__11110010
-v__11110011
-S__11110100
-)__11110101
-A__11110110
-w__11110111
-1__11111000
-B__111110010
-[__111110011
-]__11111010
-x__111110110
-2__111110111
-K__111111000
-H__111111001
-:__111111010
-C__1111110110
-6__11111101110
-M__11111101111
-T__1111111000
-ÿ__1111111001
-7__1111111010
-(__1111111011
-R__1111111100
-q__1111111101
-4__1111111110
-F__11111111110
-E__111111111110
+= = = File = = =
+Data Reduction
+Data reduction techniques are used in order to obtain a new representation
+of the data set that is much smaller in volume, but yet produces
+the same (or almost the same) analytical results. The most common
+reduction strategies are a) data cube aggregation, b) dimensionality reduction,
+c) numerocity reduction, and d) discretization and concept hierarchy
+generation [Barbara et al., 1997].
+2.6 Data Discretization
+As already mentioned, data discretization is a strategy for data reduction,
+but with particular importance. Discretization methods are applied
+both on numeric and categorical data. Specific methods include:
+- Discretization methods for numeric data [Kerber, 1992]
+- Binning
+- Histogram Analysis
+- Cluster Analysis
+- Entropy-Based Discretization
+- Segmentation by natural partitioning
+- Discretization methods for categorical data [Han and Fu, 1994]
+- Specification of a partial ordering of attributes explicitly at the
+schema level by users or experts
+Data Mining and Knowledge Discovery: A brief overview 21
+- Specification of a portion of a hierarchy by explicit data grouping
+- Specification of a set of attributes, but not of their partial ordering�
+= = = End file = = =
+
+= = = List = = =
+| symbol | counter |
+| ------ | ------- |
+|      � |       1 |
+|      M |       1 |
+|      x |       3 |
+|      4 |       1 |
+|      F |       1 |
+|      E |       1 |
+|      C |       1 |
+|      H |       2 |
+|      K |       2 |
+|      - |      11 |
+|      : |       2 |
+|      S |       5 |
+|      A |       4 |
+|      6 |       1 |
+|      2 |       3 |
+|      ] |       3 |
+|      7 |       1 |
+|      9 |       6 |
+|      1 |       4 |
+|      B |       3 |
+|      [ |       3 |
+|      z |       7 |
+|      g |      18 |
+|      T |       1 |
+|      . |       6 |
+|      ) |       5 |
+|      ( |       1 |
+|      y |      16 |
+|      , |      10 |
+|      v |       5 |
+|      l |      27 |
+|      m |      22 |
+|      f |      16 |
+|      p |      20 |
+|      w |       4 |
+|      b |      15 |
+|      s |      45 |
+|      q |       1 |
+|      h |      20 |
+|      r |      69 |
+|     \n |      22 |
+|      n |      64 |
+|      o |      67 |
+|      i |      92 |
+|      c |      46 |
+|      u |      28 |
+|      d |      38 |
+|      e |      94 |
+|      R |       1 |
+|        |     155 |
+|      t |     100 |
+|      a |      98 |
+|      D |      10 |
+= = = End list = = =
+
+= = = Array = = =
+| array[i] | counter  | symbal   | code             |
+| -------- | -------- | -------- | ---------------- |
+| 0        | 155      |          | __000            |
+| 1        | 100      | t        | __001            |
+| 2        | 98       | a        | __0100           |
+| 3        | 94       | e        | __0101           |
+| 4        | 92       | i        | __0110           |
+| 5        | 69       | r        | __0111           |
+| 6        | 67       | o        | __1000           |
+| 7        | 64       | n        | __1001           |
+| 8        | 46       | c        | __10100          |
+| 9        | 45       | s        | __10101          |
+| 10       | 38       | d        | __10110          |
+| 11       | 28       | u        | __10111          |
+| 12       | 27       | l        | __11000          |
+| 13       | 22       | m        | __110010         |
+| 14       | 22       | \n       | __110011         |
+| 15       | 20       | p        | __110100         |
+| 16       | 20       | h        | __110101         |
+| 17       | 18       | g        | __110110         |
+| 18       | 16       | f        | __110111         |
+| 19       | 16       | y        | __111000         |
+| 20       | 15       | b        | __111001         |
+| 21       | 11       | -        | __1110100        |
+| 22       | 10       | ,        | __1110101        |
+| 23       | 10       | D        | __1110110        |
+| 24       | 7        | z        | __1110111        |
+| 25       | 6        | 9        | __1111000        |
+| 26       | 6        | .        | __11110010       |
+| 27       | 5        | v        | __11110011       |
+| 28       | 5        | S        | __11110100       |
+| 29       | 5        | )        | __11110101       |
+| 30       | 4        | A        | __11110110       |
+| 31       | 4        | w        | __11110111       |
+| 32       | 4        | 1        | __11111000       |
+| 33       | 3        | B        | __111110010      |
+| 34       | 3        | [        | __111110011      |
+| 35       | 3        | ]        | __11111010       |
+| 36       | 3        | x        | __111110110      |
+| 37       | 3        | 2        | __111110111      |
+| 38       | 2        | K        | __111111000      |
+| 39       | 2        | H        | __111111001      |
+| 40       | 2        | :        | __111111010      |
+| 41       | 1        | C        | __1111110110     |
+| 42       | 1        | 6        | __11111101110    |
+| 43       | 1        | M        | __11111101111    |
+| 44       | 1        | T        | __1111111000     |
+| 45       | 1        | �        | __1111111001     |
+| 46       | 1        | 7        | __1111111010     |
+| 47       | 1        | (        | __1111111011     |
+| 48       | 1        | R        | __1111111100     |
+| 49       | 1        | q        | __1111111101     |
+| 50       | 1        | 4        | __1111111110     |
+| 51       | 1        | F        | __11111111110    |
+| 52       | 1        | E        | __111111111110   |
+= = = End array = = =

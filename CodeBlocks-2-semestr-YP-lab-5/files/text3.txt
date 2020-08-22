@@ -1,0 +1,23 @@
+Data Reduction
+Data reduction techniques are used in order to obtain a new representation
+of the data set that is much smaller in volume, but yet produces
+the same (or almost the same) analytical results. The most common
+reduction strategies are a) data cube aggregation, b) dimensionality reduction,
+c) numerocity reduction, and d) discretization and concept hierarchy
+generation [Barbara et al., 1997].
+2.6 Data Discretization
+As already mentioned, data discretization is a strategy for data reduction,
+but with particular importance. Discretization methods are applied
+both on numeric and categorical data. Specific methods include:
+- Discretization methods for numeric data [Kerber, 1992]
+- Binning
+- Histogram Analysis
+- Cluster Analysis
+- Entropy-Based Discretization
+- Segmentation by natural partitioning
+- Discretization methods for categorical data [Han and Fu, 1994]
+- Specification of a partial ordering of attributes explicitly at the
+schema level by users or experts
+Data Mining and Knowledge Discovery: A brief overview 21
+- Specification of a portion of a hierarchy by explicit data grouping
+- Specification of a set of attributes, but not of their partial ordering
